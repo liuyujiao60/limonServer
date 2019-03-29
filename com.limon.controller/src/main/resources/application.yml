@@ -1,0 +1,71 @@
+server:
+  port: 10081
+  tomcat:
+    uri-encoding: UTF-8
+logging:
+  config: classpath:log4j2.xml
+spring:
+  datasource:
+    datasource-common:
+      name: datasource-common
+      url: jdbc:mysql://39.98.185.20:3306/Limon?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: liuyujiao3080701
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      max-idle: 5
+      max-wait: 10000
+      min-idle: 1
+      initial-size: 3
+      max-active: 600
+    datasource-user:
+      name: datasource-user
+      url: jdbc:mysql://39.98.185.20:3306/Limon?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: liuyujiao3080701
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      max-idle: 5
+      max-wait: 10000
+      min-idle: 1
+      initial-size: 3
+      max-active: 600
+    datasource-article:
+      name: datasource-article
+      url: jdbc:mysql://39.98.185.20:3306/Limon?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: liuyujiao3080701
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      max-idle: 5
+      max-wait: 10000
+      min-idle: 1
+      initial-size: 3
+      max-active: 600
+    datasource-view:
+      name: datasource-view
+      url: jdbc:mysql://39.98.185.20:3306/Limon?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: liuyujiao3080701
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      max-idle: 5
+      max-wait: 10000
+      min-idle: 1
+      initial-size: 3
+      max-active: 600
+  application:
+    name: limon-server
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+  aop:
+    auto: true
+  redis:
+    database: 1
+    host: 39.105.106.238
+    port: 6379
+    password: 123456
+    pool:
+      max-active: 300
+      max-wait: 100000
+      max-idle: 150
+      min-idle: 100

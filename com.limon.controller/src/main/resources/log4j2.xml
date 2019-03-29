@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration debug="on">
+	<properties>
+		<!-- 文件输出格式 -->
+		<property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level
+			[%thread] %c [%L] -| %msg%n</property>
+		<property name="PATTERN1">%d{HH:mm:ss.SSS} %-5level - %msg%xEx%n
+		</property>
+		<property name="PATTERN3">%m%n</property>
+		<property name="logpath">/markonly/server</property>
+	</properties>
+
+	<Appenders>
+		<Console name="CONSOLE" target="system_out">
+			<PatternLayout pattern="${PATTERN1}" />
+		</Console>
+        
+        <RollingFile name="requestInfo" fileName="~/limon/logs/requestInfo.log"
+			filePattern="~/limon/logs/requestInfo_%d{yyyy-MM-dd}_%i.log">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="9999" />
+		</RollingFile>
+		
+		<Async name="requestInfoAsync"  bufferSize="262144">
+            <AppenderRef ref="requestInfo"/>
+        </Async>
+		
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<appenderref ref="CONSOLE" />
+		</Root>
+
+		<Logger name="questionSpider" level="INFO">
+			<AppenderRef ref="questionSpiderAsync" />
+		</Logger>
+		
+		<Logger name="requestInfo" level="INFO">
+			<AppenderRef ref="requestInfoAsync" />
+		</Logger>
+
+	</Loggers>
+</Configuration>
